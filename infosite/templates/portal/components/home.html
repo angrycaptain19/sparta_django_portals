@@ -1,0 +1,23 @@
+{% extends 'portal/base.html' %}
+{% load static %}
+ {% block content %}
+    <style>
+        .sparta-header-image{
+            padding: 0px;
+        }
+        header{
+            color: white;
+        }
+    </style>
+
+
+    <!-- Header/Home -->
+    <header class="w3-container w3-padding-32 w3-center w3-padding-top-64" id="home">
+        <img src="{% static 'images/SPARTA Logo Burgundy BG.png' %}" alt="" class="w3-image sparta-header-image" width="60%">
+
+        <h1 class="w3-xlarge"> <b>S</b>marter <b>P</b>hilippines through Data <b>A</b>nalytics <b>R</b>&D, <b>T</b>raining and <b>A</b>doption</h1>
+    </header>
+     {% include 'portal/components/carousel.html' %}
+
+
+    {% endblock %}

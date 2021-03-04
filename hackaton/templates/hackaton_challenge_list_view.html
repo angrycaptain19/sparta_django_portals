@@ -1,0 +1,46 @@
+{% extends 'portal/base.html' %}
+{% load static %}
+{% block content %}
+    <style>
+    .hack_card{
+        height: 485px;
+    }
+    @media screen and (max-width: 420px) {
+        .hack_card{
+            height: auto;
+        }
+    }
+    </style>
+    <!-- News and Upcoming Events Section -->
+    <br>
+    <br>
+    <div class="w3-content w3-text-grey" id="newsandevents">
+        <h2 class="w3-text-light-grey">Hackathon</h2>
+        <hr style="width:200px" class="w3-opacity">
+        <div class="w3-row">
+
+            {% for hackchallenge in hackatonchallenge_list %}
+                <a href="{{ hackchallenge.get_absolute_url }}">
+                <!-- hackaton challenge entries -->
+                <div class="w3-col w3-quarter ">
+                    <!-- hackaton challenge entry -->
+                    <div class="w3-card-4 w3-margin w3-white hack_card">
+                        <img src="{{hackchallenge.challenge_avatar.url}}" alt="" style="width:100%">
+                        <div class="w3-container">
+                            <h5><b>{{ hackchallenge.title }}</b></h5>
+                        </div>
+                        <div class="w3-container">
+                            {{ hackchallenge.text|safe|slice:":250" }}.....
+                        </div>
+                    </div>
+                </div>
+                <!-- END hackaton challenge ENTRIES -->
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,127 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+
+{% block content %}
+    {% url 'register' as register_url %}
+    {% url 'login' as login_url %}
+    <style>
+        body{
+            align-self: auto;
+            vertical-align: center;
+        }
+
+        .login_card{
+            margin: auto;
+        }
+        .login_card_holder{
+            padding-top: 30px;
+            width: 30%;
+            margin: auto;
+        }
+        @media screen and (max-width: 420px) {
+            .login_card_holder {
+                width: 90%;
+            }
+        }
+        label h1{
+            color: #400D13;
+        }
+
+        .login_btn{
+            width: 100%;
+            margin: auto;
+            color: white; ;
+
+        }
+        .login_btn:hover{
+            background-color: #B0191D ;
+        }
+        .sparta-image{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+            padding-bottom: 20px;
+        }
+        a{
+            text-decoration: none;
+        }
+        a:hover{
+            color: #29285D;
+        }
+        .sparta-partners{
+            margin-left: auto;
+            margin-right: auto;
+            width: 20%;
+            padding-top: 40px;
+            padding-right: 25px;
+            padding-left: 25px;
+
+        }
+        @media screen and (max-width: 420px) {
+            .sparta-partners {
+                width: 20%;
+                padding-right: 10px;
+                padding-left: 10px;
+            }
+        }
+        .sparta-partners-all{
+
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+
+    <div class="container login_card_holder w3-row-padding ">
+        <img class="sparta-image" src="{% static 'images/SPARTA Logo Burgundy BG.png' %}" alt="">
+        <div class="w3-card-4 login_card sparta-maroon-4">
+            <form action="{{ login_url }}" class="w3-container" method="post">
+                {% csrf_token %}
+                <h1 class="w3-center">LOG IN</h1>
+                {% csrf_token %}
+                         {% for field in form.visible_fields %}
+                                    {% if messages %}
+                                      {% for message in messages %}
+                                        <span style="color:red">{{ message }}</span>
+                                      {% endfor %}
+                                     {% endif %}
+                        {% endfor %}
+
+                <label>
+                    Username
+                    <input class="w3-input w3-border" id="id_username" name="username"  placeholder="username or email" required type="text"/>
+                </label>
+                <br>
+                <label class="">
+                    Password
+                    <input class="w3-input w3-border" type="password"  id="id_password" name="password" placeholder="Your Password" />
+                </label>
+                <br>
+
+                <input class="w3-btn sparta-maroon-2 login_btn"  value="SIGN IN" type="submit" name="btn-login">
+                <div class="w3-center">
+                    <p>Do you have account?
+                        <a  href="{{ register_url }}">
+                            <b>REGISTER</b>
+                        </a>
+                    </p>
+                </div>
+                <br>
+            </form>
+        </div>
+        <div class="w3-container sparta-partners-all">
+            <div class="w3-row">
+
+                <img class="w3-col sparta-partners" src="{% static 'images/partners/DOST.png' %}" alt="">
+                <img class="w3-col sparta-partners" src="{% static 'images/partners/DOST-PCIEERD.png' %}" alt="">
+                <img class="w3-col sparta-partners" src="{% static 'images/partners/DAP.png' %}" alt="">
+                <img class="w3-col sparta-partners" src="{% static 'images/partners/AAP_cut_f1f1f1.png' %}" style="padding-top: 50px" alt="">
+                <img class="w3-col sparta-partners" src="{% static 'images/partners/coursebank_f1f1f1.png' %}" style="padding-top: 45px" alt="">
+            </div>
+        </div>
+
+
+
+    </div>
+{% endblock %}

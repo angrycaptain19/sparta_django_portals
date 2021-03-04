@@ -1,0 +1,29 @@
+{% load static %}
+<style>
+    .lgu_logo{
+        padding: 10px;
+    }
+</style>
+    <br>
+    <br>
+    <div class="w3-content w3-text-grey" id="newsandevents">
+        <h2 class="w3-text-light-grey">Local Government Unit Challenges</h2>
+        <hr style="width:200px" class="w3-opacity">
+        <div class="w3-row">
+
+             {% for lgu in localgovunit_list %}
+                <a href="{{ lgu.get_absolute_url }}">
+                <div class="w3-col w3-quarter">
+                    <!-- hackaton challenge entry -->
+                    <div class="w3-card-4 w3-margin w3-white">
+                        <img src="{{lgu.lgu_avatar.url}}" alt="" class="lgu_logo" style="width:100%">
+
+                        <div class="w3-container">
+                            <h5><b>{{ lgu.city_province }}</b></h5>
+                        </div>
+                    </div>
+                </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>

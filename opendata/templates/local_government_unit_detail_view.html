@@ -1,0 +1,71 @@
+{% extends 'portal/base.html' %}
+{% block content %}
+    <style>
+        .lgu_logo{
+            padding: 10px;
+        }
+    </style>
+    <br>
+    <br>
+    <div class="w3-content w3-text-grey" id="newsandevents">
+        <div class="w3-row">
+            <div class="w3-col">
+                <div class="w3-card-4  w3-white">
+                    <div class="w3-row">
+                        <div class="w3-col s6">
+                            <img src="{{localgovunit.lgu_detail_avatar.url}}" alt="" class="lgu_logo" style="width:100%">
+                        </div>
+                        <div class="w3-col s6">
+                            <h1><b>{{ localgovunit.city_province }}</b></h1>
+                            Address: {{ localgovunit.address}}<br>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+    <style>
+        .hack_card{
+            height: 485px;
+        }
+        @media screen and (max-width: 420px) {
+            .hack_card{
+                height: auto;
+            }
+        }
+    </style>
+    <!-- News and Upcoming Events Section -->
+    <br>
+    <div class="w3-content w3-text-grey" id="newsandevents">
+        <h2 class="w3-text-light-grey">Challenges</h2>
+        <hr style="width:200px" class="w3-opacity">
+        <div class="w3-row">
+            {% for challenge in lgu_challenges %}
+                {% if localgovunit.user ==  challenge.localgovernmentunit %}
+                    <a href="">
+                        <div class="w3-col w3-quarter ">
+                            <div class="w3-card-4 w3-margin w3-white hack_card">
+                                <img src="{{challenge.challenge_avatar.url}}" alt="" style="width:100%">
+                                <div class="w3-container">
+                                    <h5><b>{{ challenge.title }}}</b></h5>
+                                </div>
+                                <div class="w3-container">
+                                    {{ challenge.text|safe|slice:":250" }}.....
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+
+{% endblock %}

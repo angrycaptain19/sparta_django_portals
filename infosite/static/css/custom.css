@@ -1,0 +1,58 @@
+/*color*/
+.sparta-maroon-1{
+    background: #400D13;
+}
+.sparta-maroon-2{
+    background: #663F43;
+}
+.sparta-maroon-3{
+    background: #977F81;
+}
+.sparta-maroon-4{
+    background: #b1b1b1;
+}
+
+
+/*header*/
+.sparta-header-image{
+    padding: 0;
+}
+header{
+    color: white;
+}
+
+
+/*newsevent*/
+
+.newsevents{
+    padding-top: 10px;
+}
+.newsevents_card{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.date_news{
+    padding-right: 10px;
+    padding-bottom: 20px;
+}
+
+.month_news{
+    color: #B0191D;
+}
+.day_news{
+    color: #B0191D;
+}
+.year_news{
+    color: #B0191D;
+}
+
+.title_news{
+    color: #191769;
+}
+.location_news{
+    color: #191769;
+}
+.register_link{
+    color: #B0191D;
+}

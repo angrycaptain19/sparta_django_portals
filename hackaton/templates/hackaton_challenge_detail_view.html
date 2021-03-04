@@ -1,0 +1,28 @@
+{% extends 'portal/base.html' %}
+{% load static %}
+{% block content %}
+    <br>
+    <br>
+    <div class="w3-content w3-text-grey" id="newsandevents">
+        <div class="w3-row">
+                <!-- hackaton challenge entries -->
+                <div class="w3-col">
+                    <!-- hackaton challenge entry -->
+                    <div class="w3-card-4 w3-margin w3-white hack_card">
+                        <img src="{{hackatonchallenge.challenge_avatar.url}}" alt="" style="width:100%">
+                        <div class="w3-container">
+                            <h1><b>{{ hackatonchallenge.title }}</b></h1>
+                        </div>
+                        <div class="w3-container">
+                            {{ hackatonchallenge.text|safe}}
+                        </div>
+                    </div>
+                </div>
+                <!-- END hackaton challenge ENTRIES -->
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

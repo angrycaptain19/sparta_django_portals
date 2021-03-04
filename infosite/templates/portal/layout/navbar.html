@@ -1,0 +1,136 @@
+{% url 'home' as home_url %}
+{% url 'about' as about_url %}
+
+{% url 'login' as login_url %}
+{% url 'logout' as logout_url %}
+
+{% url 'opendata' as opendata_url %}
+{% url 'hackatonchallenge_list' as hackatonchallenge_list_url %}
+
+
+
+{% load static %}
+
+<style>
+    .sparta-navbar{
+        background: #400D13;
+        color: white;
+    }
+    .sparta-navbar-image{
+        padding: 20px;
+    }
+
+    .sparta-navbar-link {
+        background-color: #400D13;
+        text-decoration: none;
+        transition: background-color .5s;
+    }
+
+    .sparta-navbar-link:hover {
+        background-color: #B0191D;
+    }
+    .navbar_small{
+        color: white;
+    }
+    .navbar_small_vertical{
+        background: #400D13;
+    }
+    .text_navbar_small{
+        background-color: #400D13;
+        text-decoration: none;
+        margin-right: 100px;
+    }
+    .text_navbar_small:hover {
+        background-color: #B0191D;
+    }
+    .sparta_button_small{
+        background-color: transparent;
+        border: none;
+        padding: 10px;
+        color: white;
+    }
+    .sparta_button_small:hover{
+        border: none;
+        background-color: #B0191D;
+    }
+
+</style>
+
+
+<!-- Icon Bar (Sidebar - hidden on small screens) -->
+<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center sparta-navbar">
+    <!-- Avatar image in top left corner -->
+    <img src="{% static 'images/SPARTA Shield.png' %}"  class="sparta-navbar-image" style="width:100%" alt="">
+
+    <a href="{{ home_url }}" class="w3-bar-item  w3-padding-large sparta-navbar-link">
+        <p>HOME</p>
+    </a>
+    <a href="{{ about_url }}" class="w3-bar-item  w3-padding-large sparta-navbar-link">
+        <p>ABOUT</p>
+    </a>
+    <a href="{{ opendata_url }}" class="w3-bar-item  w3-padding-large sparta-navbar-link">
+        <p>OPEN DATA</p>
+    </a>
+    <a href="{{ hackatonchallenge_list_url }}" class="w3-bar-item  w3-padding-large sparta-navbar-link">
+        <p>HACKATHON</p>
+    </a>
+
+    {% if user.is_authenticated %}
+        {% if user.is_superuser %}
+            <a href="/admin/" class="w3-bar-item  w3-padding-large sparta-navbar-link">
+                <p>ADMIN</p>
+            </a>
+        {% endif %}
+
+        {% if user.is_participant or user.is_superuser %}
+            <a href="" class="w3-bar-item  w3-padding-large sparta-navbar-link">
+                <p>CREATE TEAM</p>
+            </a>
+        {% endif %}
+
+        <a href="" class="w3-bar-item  w3-padding-large sparta-navbar-link">
+            <p>ACCOUNT</p>
+        </a>
+        <a href="{{ logout_url }}" class="w3-bar-item  w3-padding-large sparta-navbar-link">
+            <p>LOGOUT</p>
+        </a>
+    {% else %}
+        <a href="{{ login_url }}" class="w3-bar-item  w3-padding-large sparta-navbar-link">
+            <p>LOGIN</p>
+        </a>
+    {% endif %}
+</nav>
+
+<!-- Navbar on small screens (Hidden on medium and large screens) -->
+<div class="w3-top w3-hide-large w3-hide-medium navbar_small" id="myNavbar">
+
+    <div class="w3-bar w3-opacity w3-hover-opacity-off w3-center w3-small">
+
+        <button class="w3-xlarge w3-left sparta_button_small" onclick="openLeftMenu()">&#9776;</button>
+
+        <div class="w3-sidebar w3-bar-block w3-card w3-animate-left navbar_small_vertical" style="display:none" id="leftMenu">
+
+            <button onclick="closeLeftMenu()" class="w3-bar-item w3-large sparta_button_small">Close &times;</button>
+
+            <a href="./?page=home" class="w3-bar-item   text_navbar_small">
+                <p>HOME</p>
+            </a>
+            <a href="./?page=about" class="w3-bar-item text_navbar_small">
+                <p>ABOUT</p>
+            </a>
+            <a href="./?page=challenges" class="w3-bar-item   text_navbar_small">
+                <p>CHALLENGES</p>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openLeftMenu() {
+        document.getElementById("leftMenu").style.display = "block";
+    }
+
+    function closeLeftMenu() {
+        document.getElementById("leftMenu").style.display = "none";
+    }
+</script>
